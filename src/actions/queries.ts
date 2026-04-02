@@ -76,11 +76,16 @@ const POST_FIELDS = `
                     allowedActions`;
 
 const CHANNEL_FIELDS = `
-            id name displayName service type avatar timezone
-            isDisconnected isLocked isQueuePaused
+            id name displayName descriptor service type avatar timezone
+            isDisconnected isLocked isNew isQueuePaused
+            showTrendingTopicSuggestions hasActiveMemberDevice
             organizationId serviceId createdAt updatedAt
             allowedActions scopes
-            postingSchedule { day times paused }`;
+            externalLink
+            products
+            postingSchedule { day times paused }
+            postingGoal { goal sentCount scheduledCount status periodStart periodEnd }
+            linkShortening { isEnabled }`;
 
 function buildListChannelsQuery(payload: Record<string, unknown>): string {
     const p = payload as z.infer<typeof listChannelsSchema>;
@@ -163,6 +168,9 @@ function buildGetDailyPostingLimitsQuery(payload: Record<string, unknown>): stri
             channel { id name service }
             limit
             used
+            isAtLimit
+            sent
+            scheduled
         }
     }`;
 }

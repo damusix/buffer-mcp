@@ -84,7 +84,7 @@ describe('Query Actions', () => {
             expect(query).toContain('channels(input:');
             expect(query).toContain('organizationId: "org123"');
             expect(query).not.toContain('filter:');
-            expect(query).toContain('id name displayName service');
+            expect(query).toContain('id name displayName descriptor service');
         });
 
         it('builds query with isLocked filter', () => {
@@ -105,6 +105,19 @@ describe('Query Actions', () => {
                 filter: { product: 'publish' },
             });
             expect(query).toContain('product: "publish"');
+        });
+
+        it('includes extended channel fields in query', () => {
+            const action = getAction('listChannels')!;
+            const builder = action.graphqlQuery as (p: Record<string, unknown>) => string;
+            const query = builder({ organizationId: 'org123' });
+            expect(query).toContain('descriptor');
+            expect(query).toContain('isNew');
+            expect(query).toContain('externalLink');
+            expect(query).toContain('postingGoal');
+            expect(query).toContain('linkShortening');
+            expect(query).toContain('products');
+            expect(query).toContain('hasActiveMemberDevice');
         });
     });
 
@@ -132,7 +145,7 @@ describe('Query Actions', () => {
             const builder = action.graphqlQuery as (p: Record<string, unknown>) => string;
             const query = builder({ channelId: '68426341d6d25b49a128217b' });
             expect(query).toContain('channel(input: { id: "68426341d6d25b49a128217b" })');
-            expect(query).toContain('id name displayName service');
+            expect(query).toContain('id name displayName descriptor service');
             expect(query).toContain('postingSchedule');
         });
     });
@@ -354,6 +367,15 @@ describe('Query Actions', () => {
                 date: '2025-10-30',
             });
             expect(query).toContain('date: "2025-10-30"');
+        });
+
+        it('includes isAtLimit, sent, and scheduled in response', () => {
+            const action = getAction('getDailyPostingLimits')!;
+            const builder = action.graphqlQuery as (p: Record<string, unknown>) => string;
+            const query = builder({ channelIds: ['ch1'] });
+            expect(query).toContain('isAtLimit');
+            expect(query).toContain('sent');
+            expect(query).toContain('scheduled');
         });
     });
 
