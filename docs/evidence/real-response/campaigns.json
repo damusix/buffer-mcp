@@ -1,0 +1,114 @@
+{
+    "organizationLimits": {
+        "data": {
+            "account": {
+                "organizations": [
+                    {
+                        "id": "68425e79e5105cb6432cc10f",
+                        "name": "My Organization",
+                        "limits": {
+                            "channels": 3,
+                            "members": 0,
+                            "scheduledPosts": 10,
+                            "tags": 3,
+                            "ideas": 100,
+                            "ideaGroups": 3,
+                            "savedReplies": 1,
+                            "generateContent": 5000
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "postsWithTags": {
+        "data": {
+            "posts": {
+                "edges": [
+                    {
+                        "node": {
+                            "id": "69028ba74f51d522ca05aeed",
+                            "text": "🌴 New to pool ownership in Miami? Welcome to the club! Here are day-one habits to keep your water sparkling—without swallowing your weekends:\n\n✅ Do this yourself\n\t•\tDaily skimming to stop stains before they start\n\t•\tWatch the water level (evaporation is real in our heat)\n\t•\tTest pH & chlorine with a simple kit\n\t•\tKeep the filter running for healthy circulation\n\n🛠️ Call a pro when\n\t•\tThe pump sounds off or efficiency drops\n\t•\tAlgae threatens after our humid spells\n\t•\tIt’s time for seasonal prep (hello, hurricane season)\n\t•\tChemistry gets complex and you want to protect equipment\n\nWe’ve helped first-time owners across Miami-Dade for 18+ years—so you can enjoy the pool and leave the technical stuff to us. 💧\n\n👉 Read the full guide: https://robertsbluepools.com/essential-pool-care-tips-for-first-time-miami-pool-owners/\n📞 Questions? Call 305 ROB POOL\n\n#Miami #PoolCare #FirstTimeHomeowner #SouthFlorida #PoolMaintenance #RobertsBluePools",
+                            "status": "sent",
+                            "tags": [],
+                            "notes": [],
+                            "ideaId": null
+                        }
+                    },
+                    {
+                        "node": {
+                            "id": "69028ba67904dc78780f14ea",
+                            "text": "🌴 New to pool ownership in Miami? Welcome to the club! Here are day-one habits to keep your water sparkling—without swallowing your weekends:\n\n✅ Do this yourself\n\t•\tDaily skimming to stop stains before they start\n\t•\tWatch the water level (evaporation is real in our heat)\n\t•\tTest pH & chlorine with a simple kit\n\t•\tKeep the filter running for healthy circulation\n\n🛠️ Call a pro when\n\t•\tThe pump sounds off or efficiency drops\n\t•\tAlgae threatens after our humid spells\n\t•\tIt’s time for seasonal prep (hello, hurricane season)\n\t•\tChemistry gets complex and you want to protect equipment\n\nWe’ve helped first-time owners across Miami-Dade for 18+ years—so you can enjoy the pool and leave the technical stuff to us. 💧\n\n👉 Read the full guide: https://lnkd.in/eVqNXzjD\n📞 Questions? Call 305 ROB POOL\n\n#Miami #PoolCare #FirstTimeHomeowner #SouthFlorida #PoolMaintenance #RobertsBluePools",
+                            "status": "sent",
+                            "tags": [],
+                            "notes": [],
+                            "ideaId": null
+                        }
+                    },
+                    {
+                        "node": {
+                            "id": "69028ba6197836ad9d0924dd",
+                            "text": "🌴 New to pool ownership in Miami? Welcome to the club! Here are day-one habits to keep your water sparkling—without swallowing your weekends:\n\n✅ Do this yourself\n\t•\tDaily skimming to stop stains before they start\n\t•\tWatch the water level (evaporation is real in our heat)\n\t•\tTest pH & chlorine with a simple kit\n\t•\tKeep the filter running for healthy circulation\n\n🛠️ Call a pro when\n\t•\tThe pump sounds off or efficiency drops\n\t•\tAlgae threatens after our humid spells\n\t•\tIt’s time for seasonal prep (hello, hurricane season)\n\t•\tChemistry gets complex and you want to protect equipment\n\nWe’ve helped first-time owners across Miami-Dade for 18+ years—so you can enjoy the pool and leave the technical stuff to us. 💧\n\n👉 Read the full guide: https://robertsbluepools.com/essential-pool-care-tips-for-first-time-miami-pool-owners/\n📞 Questions? Call 305 ROB POOL\n\n#Miami #PoolCare #FirstTimeHomeowner #SouthFlorida #PoolMaintenance #RobertsBluePools",
+                            "status": "sent",
+                            "tags": [],
+                            "notes": [],
+                            "ideaId": null
+                        }
+                    },
+                    {
+                        "node": {
+                            "id": "69028aa7506fc087f40eb014",
+                            "text": "Commercial pools look simple—until they aren’t.\nIn Miami’s climate, what guests see on the surface depends on a complex system beneath it: filtration networks, chemical controllers, pump rooms, and automation. When one piece slips, the entire experience—and your revenue—can suffer.\n\nWhy DIY falls short (especially in South Florida):\n• Year-round usage = nonstop equipment wear\n• High humidity accelerates corrosion\n• Intense UV destabilizes water chemistry\n• Salt air degrades components\n• Tropical storms overwhelm filtration\n\nWhat professional management delivers:\n• Fewer emergency closures and shutdowns\n• Longer time between costly renovations\n• Consistent, crystal-clear water guests notice\n• Confidence in safety and compliance\n\nFor hotels, condos, and resorts across Miami-Dade, outsourcing pool operations isn’t an expense—it’s an investment in infrastructure longevity and guest satisfaction.\n\nLet’s partner: your team focuses on guest experience; we handle the technical complexities beneath the surface.\n\n👉 Read the full post: https://robertsbluepools.com/beyond-the-surface-commercial-pool-systems-that-demand-professional-attention/\n📞 Call: +1 (305) 762-7665 (305-ROB-POOL)\n\n#Miami #CommercialPools #PropertyManagement #Hospitality #FacilitiesManagement #CondoAssociations #MiamiBeach",
+                            "status": "sent",
+                            "tags": [],
+                            "notes": [],
+                            "ideaId": null
+                        }
+                    },
+                    {
+                        "node": {
+                            "id": "69028aa6f8f8b50dcd087e61",
+                            "text": "Commercial pools look simple—until they aren’t.\nIn Miami’s climate, what guests see on the surface depends on a complex system beneath it: filtration networks, chemical controllers, pump rooms, and automation. When one piece slips, the entire experience—and your revenue—can suffer.\n\nWhy DIY falls short (especially in South Florida):\n• Year-round usage = nonstop equipment wear\n• High humidity accelerates corrosion\n• Intense UV destabilizes water chemistry\n• Salt air degrades components\n• Tropical storms overwhelm filtration\n\nWhat professional management delivers:\n• Fewer emergency closures and shutdowns\n• Longer time between costly renovations\n• Consistent, crystal-clear water guests notice\n• Confidence in safety and compliance\n\nFor hotels, condos, and resorts across Miami-Dade, outsourcing pool operations isn’t an expense—it’s an investment in infrastructure longevity and guest satisfaction.\n\nLet’s partner: your team focuses on guest experience; we handle the technical complexities beneath the surface.\n\n👉 Read the full post: https://lnkd.in/eEmPswTX\n📞 Call: +1 (305) 762-7665 (305-ROB-POOL)\n\n#Miami #CommercialPools #PropertyManagement #Hospitality #FacilitiesManagement #CondoAssociations #MiamiBeach",
+                            "status": "sent",
+                            "tags": [],
+                            "notes": [],
+                            "ideaId": null
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "organizationFields": {
+        "data": {
+            "account": {
+                "organizations": [
+                    {
+                        "id": "68425e79e5105cb6432cc10f",
+                        "name": "My Organization",
+                        "ownerEmail": "danilo+rbp@alonso.network",
+                        "channelCount": 3,
+                        "limits": {
+                            "channels": 3,
+                            "members": 0,
+                            "scheduledPosts": 10,
+                            "scheduledThreadsPerChannel": 1,
+                            "scheduledStoriesPerChannel": 2000,
+                            "generateContent": 5000,
+                            "tags": 3,
+                            "ideas": 100,
+                            "ideaGroups": 3,
+                            "savedReplies": 1
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "notes": [
+        "No Campaign entity exists — Tags serve the categorization role",
+        "No standalone query for Ideas — only createIdea mutation",
+        "No standalone query for Tags — they appear as fields on Post objects",
+        "Organization limits include counts for tags, ideas, ideaGroups"
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "name": "@damusix/buffer-mcp",
+    "version": "0.0.0",
+    "description": "MCP server for the Buffer social media API — manage posts, channels, and ideas via LLMs",
+    "keywords": [
+        "ai",
+        "buffer",
+        "llm",
+        "mcp",
+        "social-media"
+    ],
+    "license": "MIT",
+    "author": "Danilo Alonso <danilo@alonso.network>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/damusix/buffer-mcp.git"
+    },
+    "bin": {
+        "buffer-mcp": "./bin/buffer-mcp.js"
+    },
+    "files": [
+        "bin",
+        "dist"
+    ],
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "vp pack",
+        "test": "vp test",
+        "check": "vp check",
+        "lint": "vp lint",
+        "fmt": "vp fmt",
+        "dev": "vp dev"
+    },
+    "dependencies": {
+        "@logosdx/fetch": "^8.0.0",
+        "@logosdx/utils": "^6.1.0",
+        "@modelcontextprotocol/sdk": "^1.12.1",
+        "zod": "^3.24.4"
+    },
+    "devDependencies": {
+        "@changesets/changelog-github": "^0.6.0",
+        "@changesets/cli": "^2.30.0",
+        "tsx": "^4.21.0",
+        "typescript": "^5.8.2",
+        "vite-plus": "^0.1.15-alpha.5",
+        "vitest": "^3.1.1"
+    },
+    "packageManager": "pnpm@10.33.0"
+}

@@ -1,0 +1,7 @@
+# ralph log — 2026-04-02T01:59:35.973Z
+# CWD: /home/ralph/buffer-mcp
+# command: init
+
+[2026-04-02T01:59:35.974Z] [INFO] log: docs/ralph-loop/logs/ralph-2026-04-02T01-59-35-973Z.log
+[2026-04-02T01:59:36.028Z] [OK] initialized (anchor: 32e6fb73183e)
+[2026-04-02T01:59:36.029Z] [INFO] edit docs/ralph-loop/ralph-prompt.md, then run: ralph

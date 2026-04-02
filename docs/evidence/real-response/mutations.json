@@ -1,0 +1,95 @@
+{
+    "createDraft": {
+        "data": {
+            "createPost": {
+                "post": {
+                    "id": "69cde772a6fd7aa9192de922",
+                    "text": "MCP test draft — safe to delete",
+                    "status": "draft",
+                    "via": "buffer",
+                    "shareMode": "addToQueue",
+                    "channelService": "linkedin",
+                    "channelId": "690288cc669affb4c9915dda",
+                    "dueAt": null,
+                    "createdAt": "2026-04-02T03:50:10.896Z",
+                    "tags": [],
+                    "notes": [],
+                    "allowedActions": [
+                        "addPostToQueue",
+                        "publishPostNow",
+                        "updatePost",
+                        "publishPostNext",
+                        "updatePostSchedule",
+                        "updatePostTags",
+                        "addPostNote",
+                        "duplicatePost",
+                        "deletePost",
+                        "updateShopGridLink"
+                    ]
+                }
+            }
+        }
+    },
+    "deleteDraft": {
+        "error": "Too Many Requests (429 rate limited before delete could execute)"
+    },
+    "validationErrors": {
+        "invalidEnumValue": {
+            "status": 400,
+            "errors": [
+                {
+                    "message": "Value \"automatic_publishing\" does not exist in \"SchedulingType\" enum.",
+                    "locations": [{ "line": 6, "column": 29 }],
+                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                }
+            ]
+        },
+        "invalidUnionFragment": {
+            "status": 400,
+            "errors": [
+                {
+                    "message": "Fragment cannot be spread here as objects of type \"PostActionPayload\" can never be of type \"VoidMutationError\".",
+                    "locations": [{ "line": 26, "column": 13 }],
+                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                },
+                {
+                    "message": "Fragment cannot be spread here as objects of type \"DeletePostPayload\" can never be of type \"NotFoundError\".",
+                    "locations": [{ "line": 7, "column": 17 }],
+                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                }
+            ]
+        },
+        "instagramRequiresMedia": {
+            "data": {
+                "createPost": {
+                    "message": "Invalid post: Instagram posts require at least one image or video., Instagram posts require a type (post, story, or reel)."
+                }
+            }
+        },
+        "rateLimitExceeded": {
+            "status": 429,
+            "errors": [
+                {
+                    "message": "Too many requests from this client. Please try again later.",
+                    "extensions": {
+                        "code": "RATE_LIMIT_EXCEEDED",
+                        "window": "15m"
+                    }
+                }
+            ]
+        }
+    },
+    "notes": [
+        "SchedulingType enum uses 'automatic'/'notification', NOT 'automatic_publishing'/'notification_publishing' — docs reference page was WRONG",
+        "PostActionPayload union does NOT include VoidMutationError — only PostActionSuccess | MutationError",
+        "DeletePostPayload union does NOT include NotFoundError — only DeletePostSuccess (and possibly MutationError)",
+        "MutationError response for createPost has shape: { message: string } — returned when validation fails (e.g., Instagram requires media)",
+        "Draft posts have status 'draft', via 'buffer', dueAt null",
+        "allowedActions on draft includes: addPostToQueue, publishPostNow, updatePost, publishPostNext, updatePostSchedule, updatePostTags, addPostNote, duplicatePost, deletePost, updateShopGridLink",
+        "Rate limit error shape: { errors: [{ message, extensions: { code: 'RATE_LIMIT_EXCEEDED', window: '15m' } }] }",
+        "Rate limit returns HTTP 429 (not 200 with errors like other GraphQL errors)",
+        "GraphQL validation errors return HTTP 400 with extensions.code = 'GRAPHQL_VALIDATION_FAILED'",
+        "LinkedIn channel accepts text-only posts; Instagram requires at least one image or video plus a type (post/story/reel)",
+        "3 draft posts were created during testing that may not have been deleted due to rate limiting"
+    ]
+}
