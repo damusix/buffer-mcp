@@ -1,5 +1,11 @@
 # @damusix/buffer-mcp
 
+## 0.2.0
+
+### Minor Changes
+
+- [`8563532`](https://github.com/damusix/buffer-mcp/commit/8563532fb78bedd4bbb32549f88e564115738634) - Complete API coverage: platform-specific metadata for all 12 services (Instagram, Facebook, Pinterest, YouTube, etc.), full asset types (videos, documents, links), expanded query response fields, and new createPost/createIdea input fields.
+
 ## 0.1.0
 
 ### Minor Changes
