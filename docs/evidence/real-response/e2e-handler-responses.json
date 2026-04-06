@@ -1,0 +1,695 @@
+{
+    "listOrganizations": {
+        "data": {
+            "account": {
+                "organizations": [
+                    {
+                        "id": "***",
+                        "name": "***",
+                        "ownerEmail": "***",
+                        "channelCount": 3,
+                        "limits": {
+                            "channels": 3,
+                            "members": 0,
+                            "scheduledPosts": 5000,
+                            "tags": 250,
+                            "ideas": 5000,
+                            "ideaGroups": 100,
+                            "savedReplies": 250,
+                            "scheduledThreadsPerChannel": 2000,
+                            "scheduledStoriesPerChannel": 2000,
+                            "generateContent": 45000
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "listChannels": {
+        "data": {
+            "channels": [
+                {
+                    "id": "***",
+                    "name": "***",
+                    "displayName": "***",
+                    "descriptor": "Instagram Professional Account",
+                    "service": "instagram",
+                    "type": "business",
+                    "avatar": "***",
+                    "timezone": "America/Chicago",
+                    "isDisconnected": false,
+                    "isLocked": false,
+                    "isNew": false,
+                    "isQueuePaused": false,
+                    "showTrendingTopicSuggestions": true,
+                    "hasActiveMemberDevice": false,
+                    "organizationId": "***",
+                    "serviceId": "***",
+                    "createdAt": "2025-06-06T03:40:49.321Z",
+                    "updatedAt": "2026-04-02T01:44:20.778Z",
+                    "allowedActions": [],
+                    "scopes": [
+                        "instagram_business_basic",
+                        "instagram_business_content_publish",
+                        "instagram_business_manage_insights",
+                        "instagram_business_manage_comments"
+                    ],
+                    "externalLink": "***",
+                    "products": [
+                        "analyze",
+                        "engage",
+                        "publish"
+                    ],
+                    "postingSchedule": [
+                        {
+                            "day": "mon",
+                            "times": [
+                                "07:10",
+                                "16:18"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "tue",
+                            "times": [
+                                "07:30",
+                                "16:18"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "wed",
+                            "times": [
+                                "07:45",
+                                "16:36"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "thu",
+                            "times": [
+                                "07:52",
+                                "16:58"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "fri",
+                            "times": [
+                                "07:45",
+                                "16:48"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "sat",
+                            "times": [
+                                "09:14",
+                                "10:04"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "sun",
+                            "times": [
+                                "09:19",
+                                "10:21"
+                            ],
+                            "paused": false
+                        }
+                    ],
+                    "postingGoal": null,
+                    "linkShortening": {
+                        "isEnabled": false
+                    }
+                },
+                {
+                    "id": "***",
+                    "name": "***",
+                    "displayName": "***",
+                    "descriptor": "Facebook Page",
+                    "service": "facebook",
+                    "type": "page",
+                    "avatar": "***",
+                    "timezone": "America/Chicago",
+                    "isDisconnected": false,
+                    "isLocked": false,
+                    "isNew": false,
+                    "isQueuePaused": false,
+                    "showTrendingTopicSuggestions": true,
+                    "hasActiveMemberDevice": false,
+                    "organizationId": "***",
+                    "serviceId": "***",
+                    "createdAt": "2025-06-06T03:41:17.423Z",
+                    "updatedAt": "2025-06-06T03:41:17.422Z",
+                    "allowedActions": [],
+                    "scopes": [],
+                    "externalLink": "***",
+                    "products": [
+                        "analyze",
+                        "publish"
+                    ],
+                    "postingSchedule": [
+                        {
+                            "day": "mon",
+                            "times": [
+                                "10:07",
+                                "12:53"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "tue",
+                            "times": [
+                                "09:43",
+                                "11:15"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "wed",
+                            "times": [
+                                "09:42",
+                                "11:47"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "thu",
+                            "times": [
+                                "09:52",
+                                "11:34"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "fri",
+                            "times": [
+                                "09:45",
+                                "13:23"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "sat",
+                            "times": [
+                                "11:33",
+                                "12:54"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "sun",
+                            "times": [
+                                "11:43",
+                                "12:19"
+                            ],
+                            "paused": false
+                        }
+                    ],
+                    "postingGoal": null,
+                    "linkShortening": {
+                        "isEnabled": false
+                    }
+                },
+                {
+                    "id": "***",
+                    "name": "***",
+                    "displayName": "***",
+                    "descriptor": "LinkedIn Page",
+                    "service": "linkedin",
+                    "type": "page",
+                    "avatar": "***",
+                    "timezone": "America/Chicago",
+                    "isDisconnected": false,
+                    "isLocked": false,
+                    "isNew": false,
+                    "isQueuePaused": false,
+                    "showTrendingTopicSuggestions": true,
+                    "hasActiveMemberDevice": false,
+                    "organizationId": "***",
+                    "serviceId": "***",
+                    "createdAt": "2025-10-29T21:36:12.578Z",
+                    "updatedAt": "2025-10-29T21:36:12.576Z",
+                    "allowedActions": [],
+                    "scopes": [
+                        "r_basicprofile",
+                        "r_member_connections",
+                        "r_member_postAnalytics",
+                        "r_member_profileAnalytics",
+                        "r_member_social",
+                        "r_organization_followers",
+                        "r_organization_social",
+                        "r_organization_social_feed",
+                        "rw_organization_admin",
+                        "w_member_social",
+                        "w_member_social_feed",
+                        "w_organization_social",
+                        "w_organization_social_feed"
+                    ],
+                    "externalLink": "***",
+                    "products": [
+                        "analyze",
+                        "publish"
+                    ],
+                    "postingSchedule": [
+                        {
+                            "day": "mon",
+                            "times": [],
+                            "paused": false
+                        },
+                        {
+                            "day": "tue",
+                            "times": [],
+                            "paused": false
+                        },
+                        {
+                            "day": "wed",
+                            "times": [
+                                "18:46"
+                            ],
+                            "paused": false
+                        },
+                        {
+                            "day": "thu",
+                            "times": [],
+                            "paused": false
+                        },
+                        {
+                            "day": "fri",
+                            "times": [],
+                            "paused": false
+                        },
+                        {
+                            "day": "sat",
+                            "times": [],
+                            "paused": false
+                        },
+                        {
+                            "day": "sun",
+                            "times": [],
+                            "paused": false
+                        }
+                    ],
+                    "postingGoal": {
+                        "goal": 1,
+                        "sentCount": 1,
+                        "scheduledCount": 3,
+                        "status": "Hit",
+                        "periodStart": "2026-04-05T05:00:00.000Z",
+                        "periodEnd": "2026-04-12T04:59:59.999Z"
+                    },
+                    "linkShortening": {
+                        "isEnabled": false
+                    }
+                }
+            ]
+        }
+    },
+    "getChannel": {
+        "data": {
+            "channel": {
+                "id": "***",
+                "name": "***",
+                "displayName": "***",
+                "descriptor": "Instagram Professional Account",
+                "service": "instagram",
+                "type": "business",
+                "avatar": "***",
+                "timezone": "America/Chicago",
+                "isDisconnected": false,
+                "isLocked": false,
+                "isNew": false,
+                "isQueuePaused": false,
+                "showTrendingTopicSuggestions": true,
+                "hasActiveMemberDevice": false,
+                "organizationId": "***",
+                "serviceId": "***",
+                "createdAt": "2025-06-06T03:40:49.321Z",
+                "updatedAt": "2026-04-02T01:44:20.778Z",
+                "allowedActions": [],
+                "scopes": [
+                    "instagram_business_basic",
+                    "instagram_business_content_publish",
+                    "instagram_business_manage_insights",
+                    "instagram_business_manage_comments"
+                ],
+                "externalLink": "***",
+                "products": [
+                    "analyze",
+                    "engage",
+                    "publish"
+                ],
+                "postingSchedule": [
+                    {
+                        "day": "mon",
+                        "times": [
+                            "07:10",
+                            "16:18"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "tue",
+                        "times": [
+                            "07:30",
+                            "16:18"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "wed",
+                        "times": [
+                            "07:45",
+                            "16:36"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "thu",
+                        "times": [
+                            "07:52",
+                            "16:58"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "fri",
+                        "times": [
+                            "07:45",
+                            "16:48"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "sat",
+                        "times": [
+                            "09:14",
+                            "10:04"
+                        ],
+                        "paused": false
+                    },
+                    {
+                        "day": "sun",
+                        "times": [
+                            "09:19",
+                            "10:21"
+                        ],
+                        "paused": false
+                    }
+                ],
+                "postingGoal": null,
+                "linkShortening": {
+                    "isEnabled": false
+                }
+            }
+        }
+    },
+    "listPosts": {
+        "data": {
+            "posts": {
+                "edges": [
+                    {
+                        "node": {
+                            "id": "***",
+                            "text": "***",
+                            "status": "draft",
+                            "via": "buffer",
+                            "schedulingType": null,
+                            "isCustomScheduled": false,
+                            "createdAt": "2026-04-06T21:47:48.942Z",
+                            "updatedAt": "2026-04-06T21:47:48.954Z",
+                            "dueAt": null,
+                            "sentAt": null,
+                            "channelId": "***",
+                            "channelService": "linkedin",
+                            "ideaId": null,
+                            "externalLink": "***",
+                            "sharedNow": false,
+                            "shareMode": "addToQueue",
+                            "tags": [],
+                            "notes": [],
+                            "assets": [],
+                            "author": {
+                                "id": "***",
+                                "email": "***",
+                                "name": "***"
+                            },
+                            "error": null,
+                            "allowedActions": [
+                                "addPostToQueue",
+                                "publishPostNow",
+                                "updatePost",
+                                "publishPostNext",
+                                "updatePostSchedule",
+                                "updatePostTags",
+                                "addPostNote",
+                                "duplicatePost",
+                                "deletePost",
+                                "updateShopGridLink"
+                            ]
+                        },
+                        "cursor": "***"
+                    },
+                    {
+                        "node": {
+                            "id": "***",
+                            "text": "***",
+                            "status": "scheduled",
+                            "via": "buffer",
+                            "schedulingType": null,
+                            "isCustomScheduled": true,
+                            "createdAt": "2026-04-06T12:12:25.620Z",
+                            "updatedAt": "2026-04-06T12:12:25.792Z",
+                            "dueAt": "2026-04-11T14:00:00.000Z",
+                            "sentAt": null,
+                            "channelId": "***",
+                            "channelService": "instagram",
+                            "ideaId": null,
+                            "externalLink": "***",
+                            "sharedNow": false,
+                            "shareMode": "customScheduled",
+                            "tags": [],
+                            "notes": [],
+                            "assets": [
+                                {
+                                    "id": null,
+                                    "type": "image",
+                                    "mimeType": "image/jpeg",
+                                    "source": "***",
+                                    "thumbnail": "***",
+                                    "image": {
+                                        "altText": "",
+                                        "width": 2000,
+                                        "height": 2000,
+                                        "isAnimated": false
+                                    }
+                                }
+                            ],
+                            "author": {
+                                "id": "***",
+                                "email": "***",
+                                "name": "***"
+                            },
+                            "error": null,
+                            "allowedActions": [
+                                "publishPostNow",
+                                "updatePost",
+                                "movePostToDraft",
+                                "publishPostNext",
+                                "updatePostSchedule",
+                                "removePostScheduledTime",
+                                "updatePostTags",
+                                "addPostNote",
+                                "duplicatePost",
+                                "deletePost",
+                                "updateShopGridLink"
+                            ]
+                        },
+                        "cursor": "***"
+                    },
+                    {
+                        "node": {
+                            "id": "***",
+                            "text": "***",
+                            "status": "scheduled",
+                            "via": "buffer",
+                            "schedulingType": null,
+                            "isCustomScheduled": true,
+                            "createdAt": "2026-04-06T12:12:16.328Z",
+                            "updatedAt": "2026-04-06T12:12:16.447Z",
+                            "dueAt": "2026-04-08T15:00:00.000Z",
+                            "sentAt": null,
+                            "channelId": "***",
+                            "channelService": "instagram",
+                            "ideaId": null,
+                            "externalLink": "***",
+                            "sharedNow": false,
+                            "shareMode": "customScheduled",
+                            "tags": [],
+                            "notes": [],
+                            "assets": [
+                                {
+                                    "id": null,
+                                    "type": "image",
+                                    "mimeType": "image/jpeg",
+                                    "source": "***",
+                                    "thumbnail": "***",
+                                    "image": {
+                                        "altText": "",
+                                        "width": 2000,
+                                        "height": 2000,
+                                        "isAnimated": false
+                                    }
+                                }
+                            ],
+                            "author": {
+                                "id": "***",
+                                "email": "***",
+                                "name": "***"
+                            },
+                            "error": null,
+                            "allowedActions": [
+                                "publishPostNow",
+                                "updatePost",
+                                "movePostToDraft",
+                                "publishPostNext",
+                                "updatePostSchedule",
+                                "removePostScheduledTime",
+                                "updatePostTags",
+                                "addPostNote",
+                                "duplicatePost",
+                                "deletePost",
+                                "updateShopGridLink"
+                            ]
+                        },
+                        "cursor": "***"
+                    }
+                ],
+                "pageInfo": {
+                    "hasNextPage": true,
+                    "hasPreviousPage": false,
+                    "startCursor": "***",
+                    "endCursor": "***"
+                }
+            }
+        }
+    },
+    "getPost": {
+        "data": {
+            "post": {
+                "id": "***",
+                "text": "***",
+                "status": "draft",
+                "via": "buffer",
+                "schedulingType": null,
+                "isCustomScheduled": false,
+                "createdAt": "2026-04-06T21:47:48.942Z",
+                "updatedAt": "2026-04-06T21:47:48.954Z",
+                "dueAt": null,
+                "sentAt": null,
+                "channelId": "***",
+                "channelService": "linkedin",
+                "ideaId": null,
+                "externalLink": "***",
+                "sharedNow": false,
+                "shareMode": "addToQueue",
+                "tags": [],
+                "notes": [],
+                "assets": [],
+                "author": {
+                    "id": "***",
+                    "email": "***",
+                    "name": "***"
+                },
+                "error": null,
+                "allowedActions": [
+                    "addPostToQueue",
+                    "publishPostNow",
+                    "updatePost",
+                    "publishPostNext",
+                    "updatePostSchedule",
+                    "updatePostTags",
+                    "addPostNote",
+                    "duplicatePost",
+                    "deletePost",
+                    "updateShopGridLink"
+                ]
+            }
+        }
+    },
+    "getDailyPostingLimits": {
+        "data": {
+            "dailyPostingLimits": [
+                {
+                    "channelId": "***",
+                    "limit": 50,
+                    "isAtLimit": false,
+                    "sent": 1,
+                    "scheduled": 0
+                },
+                {
+                    "channelId": "***",
+                    "limit": 50,
+                    "isAtLimit": false,
+                    "sent": 0,
+                    "scheduled": 0
+                }
+            ]
+        }
+    },
+    "createPost": {
+        "data": {
+            "createPost": {
+                "post": {
+                    "id": "***",
+                    "text": "***",
+                    "status": "draft",
+                    "via": "buffer",
+                    "shareMode": "addToQueue",
+                    "channelId": "***",
+                    "channelService": "linkedin",
+                    "dueAt": null,
+                    "sentAt": null,
+                    "createdAt": "2026-04-06T21:54:43.799Z",
+                    "tags": [],
+                    "notes": [],
+                    "assets": [],
+                    "allowedActions": [
+                        "addPostToQueue",
+                        "publishPostNow",
+                        "updatePost",
+                        "publishPostNext",
+                        "updatePostSchedule",
+                        "updatePostTags",
+                        "addPostNote",
+                        "duplicatePost",
+                        "deletePost",
+                        "updateShopGridLink"
+                    ]
+                }
+            }
+        }
+    },
+    "deletePost": {
+        "data": {
+            "deletePost": {
+                "__typename": "DeletePostSuccess"
+            }
+        }
+    },
+    "createIdea": {
+        "data": {
+            "createIdea": {
+                "id": "***",
+                "content": {
+                    "title": "***",
+                    "text": "***",
+                    "tags": [],
+                    "services": [],
+                    "date": null
+                }
+            }
+        }
+    }
+}

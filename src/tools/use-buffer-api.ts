@@ -33,6 +33,7 @@ function isMutationError(actionName: string, data: Record<string, unknown>): str
         'message' in mutationResult &&
         !('post' in mutationResult) &&
         !('idea' in mutationResult) &&
+        !('id' in mutationResult) &&
         !('__typename' in mutationResult)
     ) {
         return mutationResult.message as string;
@@ -76,14 +77,17 @@ export async function handleUseBufferApi(input: UseBufferApiInput): Promise<stri
     const query = resolveQuery(actionDef, validPayload);
 
     // Step 5: Send request via FetchEngine with attempt()
-    const [response, err] = await attempt(() => bufferApi.post('/graphql', { query }));
+    const [response, err] = await attempt(() => bufferApi.post('/', { query }));
 
     // Step 6: Check attempt() error — network/timeout failures
     if (err) {
         return JSON.stringify({ error: err.message });
     }
 
-    const body = response as Record<string, unknown>;
+    // FetchEngine returns { data, headers, status, ... } — unwrap to get the GraphQL body
+    const raw = response as Record<string, unknown>;
+    const isFetchEngineResponse = 'status' in raw && 'headers' in raw;
+    const body = (isFetchEngineResponse ? raw.data : raw) as Record<string, unknown>;
 
     // Step 7-8: Check errors array in response body
     const errors = body.errors as

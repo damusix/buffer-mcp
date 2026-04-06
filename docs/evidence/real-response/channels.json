@@ -2,18 +2,18 @@
     "data": {
         "channels": [
             {
-                "id": "68426341d6d25b49a128217b",
-                "name": "robertsbluepools",
-                "displayName": "robertsbluepools",
+                "id": "***",
+                "name": "***",
+                "displayName": "***",
                 "service": "instagram",
                 "type": "business",
-                "avatar": "https://buffer-channel-avatars-bucket.s3.amazonaws.com/68426341d6d25b49a128217b_1775094261049",
+                "avatar": "***",
                 "timezone": "America/Chicago",
                 "isDisconnected": false,
                 "isLocked": false,
                 "isQueuePaused": false,
-                "organizationId": "68425e79e5105cb6432cc10f",
-                "serviceId": "17841475398641280",
+                "organizationId": "***",
+                "serviceId": "***",
                 "createdAt": "2025-06-06T03:40:49.321Z",
                 "updatedAt": "2026-04-02T01:44:20.778Z",
                 "allowedActions": [],
@@ -26,54 +26,75 @@
                 "postingSchedule": [
                     {
                         "day": "mon",
-                        "times": ["07:10", "16:18"],
+                        "times": [
+                            "07:10",
+                            "16:18"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "tue",
-                        "times": ["07:30", "16:18"],
+                        "times": [
+                            "07:30",
+                            "16:18"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "wed",
-                        "times": ["07:45", "16:36"],
+                        "times": [
+                            "07:45",
+                            "16:36"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "thu",
-                        "times": ["07:52", "16:58"],
+                        "times": [
+                            "07:52",
+                            "16:58"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "fri",
-                        "times": ["07:45", "16:48"],
+                        "times": [
+                            "07:45",
+                            "16:48"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "sat",
-                        "times": ["09:14", "10:04"],
+                        "times": [
+                            "09:14",
+                            "10:04"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "sun",
-                        "times": ["09:19", "10:21"],
+                        "times": [
+                            "09:19",
+                            "10:21"
+                        ],
                         "paused": false
                     }
                 ]
             },
             {
-                "id": "6842635dd6d25b49a1297181",
-                "name": "Robert's Blue Pools",
-                "displayName": "Robert's Blue Pools",
+                "id": "***",
+                "name": "***",
+                "displayName": "***",
                 "service": "facebook",
                 "type": "page",
-                "avatar": "https://buffer-channel-avatars-bucket.s3.amazonaws.com/6842635dd6d25b49a1297181_1749181278084",
+                "avatar": "***",
                 "timezone": "America/Chicago",
                 "isDisconnected": false,
                 "isLocked": false,
                 "isQueuePaused": false,
-                "organizationId": "68425e79e5105cb6432cc10f",
-                "serviceId": "675416698977859",
+                "organizationId": "***",
+                "serviceId": "***",
                 "createdAt": "2025-06-06T03:41:17.423Z",
                 "updatedAt": "2025-06-06T03:41:17.422Z",
                 "allowedActions": [],
@@ -81,54 +102,75 @@
                 "postingSchedule": [
                     {
                         "day": "mon",
-                        "times": ["10:07", "12:53"],
+                        "times": [
+                            "10:07",
+                            "12:53"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "tue",
-                        "times": ["09:43", "11:15"],
+                        "times": [
+                            "09:43",
+                            "11:15"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "wed",
-                        "times": ["09:42", "11:47"],
+                        "times": [
+                            "09:42",
+                            "11:47"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "thu",
-                        "times": ["09:52", "11:34"],
+                        "times": [
+                            "09:52",
+                            "11:34"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "fri",
-                        "times": ["09:45", "13:23"],
+                        "times": [
+                            "09:45",
+                            "13:23"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "sat",
-                        "times": ["11:33", "12:54"],
+                        "times": [
+                            "11:33",
+                            "12:54"
+                        ],
                         "paused": false
                     },
                     {
                         "day": "sun",
-                        "times": ["11:43", "12:19"],
+                        "times": [
+                            "11:43",
+                            "12:19"
+                        ],
                         "paused": false
                     }
                 ]
             },
             {
-                "id": "690288cc669affb4c9915dda",
-                "name": "roberts-blue-pools",
-                "displayName": "Robert's Blue Pools",
+                "id": "***",
+                "name": "***",
+                "displayName": "***",
                 "service": "linkedin",
                 "type": "page",
-                "avatar": "https://buffer-channel-avatars-bucket.s3.amazonaws.com/690288cc669affb4c9915dda_1761773773440",
+                "avatar": "***",
                 "timezone": "America/Chicago",
                 "isDisconnected": false,
                 "isLocked": false,
                 "isQueuePaused": false,
-                "organizationId": "68425e79e5105cb6432cc10f",
-                "serviceId": "urn:li:organization:109538253",
+                "organizationId": "***",
+                "serviceId": "***",
                 "createdAt": "2025-10-29T21:36:12.578Z",
                 "updatedAt": "2025-10-29T21:36:12.576Z",
                 "allowedActions": [],
@@ -160,7 +202,9 @@
                     },
                     {
                         "day": "wed",
-                        "times": ["18:46"],
+                        "times": [
+                            "18:46"
+                        ],
                         "paused": false
                     },
                     {

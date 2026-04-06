@@ -873,21 +873,21 @@ describe('Mutation Actions', () => {
                 organizationId: 'org123',
                 content: { title: 'Test' },
             });
-            expect(query).toContain('... on IdeaResponse');
+            expect(query).toContain('... on Idea');
             expect(query).toContain('... on InvalidInputError');
             expect(query).toContain('... on LimitReachedError');
             expect(query).toContain('... on UnauthorizedError');
             expect(query).toContain('... on UnexpectedError');
         });
 
-        it('includes idea content fields in IdeaResponse fragment', () => {
+        it('includes idea content fields in Idea fragment', () => {
             const action = getAction('createIdea')!;
             const builder = action.graphqlQuery as (p: Record<string, unknown>) => string;
             const query = builder({
                 organizationId: 'org123',
                 content: { title: 'Test' },
             });
-            expect(query).toContain('idea {');
+            expect(query).toContain('... on Idea');
             expect(query).toContain('id');
             expect(query).toContain('content { title text tags { id name color } services date }');
         });

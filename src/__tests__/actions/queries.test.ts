@@ -354,9 +354,8 @@ describe('Query Actions', () => {
             expect(query).toContain('dailyPostingLimits(input:');
             expect(query).toContain('channelIds: ["ch1","ch2"]');
             expect(query).not.toContain('date:');
-            expect(query).toContain('channel { id name service }');
+            expect(query).toContain('channelId');
             expect(query).toContain('limit');
-            expect(query).toContain('used');
         });
 
         it('builds query with date', () => {

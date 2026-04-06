@@ -475,11 +475,9 @@ function buildCreateIdeaMutation(payload: Record<string, unknown>): string {
         organizationId: "${p.organizationId}",
         content: { ${contentParts.join(', ')} }${extraStr}
     }) {
-        ... on IdeaResponse {
-            idea {
-                id
-                content { title text tags { id name color } services date }
-            }
+        ... on Idea {
+            id
+            content { title text tags { id name color } services date }
         }
         ... on InvalidInputError { message }
         ... on LimitReachedError { message }

@@ -114,7 +114,7 @@ describe('use-buffer-api handler', () => {
         await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
 
         expect(bufferApi.post).toHaveBeenCalledWith(
-            '/graphql',
+            '/',
             expect.objectContaining({
                 query: expect.stringContaining('account'),
             }),
@@ -388,7 +388,7 @@ describe('use-buffer-api handler', () => {
         expect(query).toContain('mutation');
         expect(query).toContain('createIdea');
         expect(query).toContain('organizationId: "org123"');
-        expect(query).toContain('IdeaResponse');
+        expect(query).toContain('Idea');
         expect(query).toContain('InvalidInputError');
         expect(query).toContain('LimitReachedError');
     });

@@ -3,13 +3,13 @@
         "data": {
             "createPost": {
                 "post": {
-                    "id": "69cde772a6fd7aa9192de922",
-                    "text": "MCP test draft — safe to delete",
+                    "id": "***",
+                    "text": "***",
                     "status": "draft",
                     "via": "buffer",
                     "shareMode": "addToQueue",
                     "channelService": "linkedin",
-                    "channelId": "690288cc669affb4c9915dda",
+                    "channelId": "***",
                     "dueAt": null,
                     "createdAt": "2026-04-02T03:50:10.896Z",
                     "tags": [],
@@ -39,8 +39,15 @@
             "errors": [
                 {
                     "message": "Value \"automatic_publishing\" does not exist in \"SchedulingType\" enum.",
-                    "locations": [{ "line": 6, "column": 29 }],
-                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                    "locations": [
+                        {
+                            "line": 6,
+                            "column": 29
+                        }
+                    ],
+                    "extensions": {
+                        "code": "GRAPHQL_VALIDATION_FAILED"
+                    }
                 }
             ]
         },
@@ -49,13 +56,27 @@
             "errors": [
                 {
                     "message": "Fragment cannot be spread here as objects of type \"PostActionPayload\" can never be of type \"VoidMutationError\".",
-                    "locations": [{ "line": 26, "column": 13 }],
-                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                    "locations": [
+                        {
+                            "line": 26,
+                            "column": 13
+                        }
+                    ],
+                    "extensions": {
+                        "code": "GRAPHQL_VALIDATION_FAILED"
+                    }
                 },
                 {
                     "message": "Fragment cannot be spread here as objects of type \"DeletePostPayload\" can never be of type \"NotFoundError\".",
-                    "locations": [{ "line": 7, "column": 17 }],
-                    "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+                    "locations": [
+                        {
+                            "line": 7,
+                            "column": 17
+                        }
+                    ],
+                    "extensions": {
+                        "code": "GRAPHQL_VALIDATION_FAILED"
+                    }
                 }
             ]
         },

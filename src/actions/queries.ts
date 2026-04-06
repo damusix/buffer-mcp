@@ -56,7 +56,7 @@ const getPostSchema = z.object({
 
 const getDailyPostingLimitsSchema = z.object({
     channelIds: z.array(z.string()).min(1).describe('Array of channel IDs to check limits for'),
-    date: z.string().optional().describe('ISO 8601 date to check (defaults to today)'),
+    date: z.string().optional().describe('ISO 8601 datetime to check, e.g. "2026-04-15T00:00:00.000Z" (defaults to today)'),
 });
 
 const POST_FIELDS = `
@@ -72,7 +72,7 @@ const POST_FIELDS = `
                         ... on VideoAsset { video { durationMs } }
                     }
                     author { id email name }
-                    error
+                    error { message supportUrl rawError }
                     allowedActions`;
 
 const CHANNEL_FIELDS = `
@@ -165,9 +165,8 @@ function buildGetDailyPostingLimitsQuery(payload: Record<string, unknown>): stri
         dailyPostingLimits(input: {
             channelIds: ${JSON.stringify(p.channelIds)}${dateStr}
         }) {
-            channel { id name service }
+            channelId
             limit
-            used
             isAtLimit
             sent
             scheduled
@@ -349,7 +348,7 @@ export const queryActions: ActionDefinition[] = [
                 label: 'Check limits for multiple channels on a specific date',
                 payload: {
                     channelIds: ['68426341d6d25b49a128217b', '690288cc669affb4c9915dda'],
-                    date: '2026-04-15',
+                    date: '2026-04-15T00:00:00.000Z',
                 },
             },
         ],
