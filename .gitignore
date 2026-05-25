@@ -3,3 +3,6 @@ dist/
 tmp/
 .env
 docs/ralph-loop/logs/tool-*
+.claude/.scratchpad/
+.worktrees/
+.claude/project/.deterministic-signals.prev.md
