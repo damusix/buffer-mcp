@@ -65,7 +65,7 @@ describe('Mutation Actions', () => {
                 mode: 'customScheduled',
                 saveToDraft: true,
                 dueAt: '2026-04-10T14:00:00.000Z',
-                assets: { images: [{ url: 'https://example.com/img.jpg' }] },
+                assets: [{ image: { url: 'https://example.com/img.jpg' } }],
                 tagIds: ['tag1', 'tag2'],
             });
             expect(result.success).toBe(true);
@@ -182,16 +182,14 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    images: [
-                        { url: 'https://example.com/pool.jpg' },
-                        { url: 'https://example.com/pool2.jpg' },
-                    ],
-                },
+                assets: [
+                    { image: { url: 'https://example.com/pool.jpg' } },
+                    { image: { url: 'https://example.com/pool2.jpg' } },
+                ],
             });
-            expect(query).toContain('assets: { images: [');
-            expect(query).toContain('url: "https://example.com/pool.jpg"');
-            expect(query).toContain('url: "https://example.com/pool2.jpg"');
+            expect(query).toContain('assets: [');
+            expect(query).toContain('{ image: { url: "https://example.com/pool.jpg" } }');
+            expect(query).toContain('{ image: { url: "https://example.com/pool2.jpg" } }');
         });
 
         it('accepts image assets with thumbnailUrl and metadata', () => {
@@ -200,9 +198,9 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    images: [
-                        {
+                assets: [
+                    {
+                        image: {
                             url: 'https://example.com/img.jpg',
                             thumbnailUrl: 'https://example.com/thumb.jpg',
                             metadata: {
@@ -210,8 +208,8 @@ describe('Mutation Actions', () => {
                                 animatedThumbnail: 'https://example.com/anim.gif',
                             },
                         },
-                    ],
-                },
+                    },
+                ],
             });
             expect(result.success).toBe(true);
         });
@@ -223,9 +221,9 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    images: [
-                        {
+                assets: [
+                    {
+                        image: {
                             url: 'https://example.com/img.jpg',
                             thumbnailUrl: 'https://example.com/thumb.jpg',
                             metadata: {
@@ -233,11 +231,11 @@ describe('Mutation Actions', () => {
                                 animatedThumbnail: 'https://example.com/anim.gif',
                             },
                         },
-                    ],
-                },
+                    },
+                ],
             });
-            expect(query).toContain('assets: { images: [');
-            expect(query).toContain('url: "https://example.com/img.jpg"');
+            expect(query).toContain('assets: [');
+            expect(query).toContain('image: { url: "https://example.com/img.jpg"');
             expect(query).toContain('thumbnailUrl: "https://example.com/thumb.jpg"');
             expect(query).toContain('altText: "A nice image"');
             expect(query).toContain('animatedThumbnail: "https://example.com/anim.gif"');
@@ -249,15 +247,15 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    videos: [
-                        {
+                assets: [
+                    {
+                        video: {
                             url: 'https://example.com/video.mp4',
                             thumbnailUrl: 'https://example.com/video-thumb.jpg',
                             metadata: { thumbnailOffset: 5000, title: 'My Video' },
                         },
-                    ],
-                },
+                    },
+                ],
             });
             expect(result.success).toBe(true);
         });
@@ -269,18 +267,18 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    videos: [
-                        {
+                assets: [
+                    {
+                        video: {
                             url: 'https://example.com/video.mp4',
                             thumbnailUrl: 'https://example.com/video-thumb.jpg',
                             metadata: { thumbnailOffset: 5000, title: 'My Video' },
                         },
-                    ],
-                },
+                    },
+                ],
             });
-            expect(query).toContain('assets: { videos: [');
-            expect(query).toContain('url: "https://example.com/video.mp4"');
+            expect(query).toContain('assets: [');
+            expect(query).toContain('video: { url: "https://example.com/video.mp4"');
             expect(query).toContain('thumbnailUrl: "https://example.com/video-thumb.jpg"');
             expect(query).toContain('thumbnailOffset: 5000');
             expect(query).toContain('title: "My Video"');
@@ -292,15 +290,15 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    documents: [
-                        {
+                assets: [
+                    {
+                        document: {
                             url: 'https://example.com/doc.pdf',
                             title: 'My Document',
                             thumbnailUrl: 'https://example.com/doc-thumb.jpg',
                         },
-                    ],
-                },
+                    },
+                ],
             });
             expect(result.success).toBe(true);
         });
@@ -312,18 +310,18 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    documents: [
-                        {
+                assets: [
+                    {
+                        document: {
                             url: 'https://example.com/doc.pdf',
                             title: 'My Document',
                             thumbnailUrl: 'https://example.com/doc-thumb.jpg',
                         },
-                    ],
-                },
+                    },
+                ],
             });
-            expect(query).toContain('assets: { documents: [');
-            expect(query).toContain('url: "https://example.com/doc.pdf"');
+            expect(query).toContain('assets: [');
+            expect(query).toContain('document: { url: "https://example.com/doc.pdf"');
             expect(query).toContain('title: "My Document"');
             expect(query).toContain('thumbnailUrl: "https://example.com/doc-thumb.jpg"');
         });
@@ -334,14 +332,16 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    link: {
-                        url: 'https://example.com/article',
-                        title: 'Great Article',
-                        description: 'A must-read article.',
-                        thumbnailUrl: 'https://example.com/article-thumb.jpg',
+                assets: [
+                    {
+                        link: {
+                            url: 'https://example.com/article',
+                            title: 'Great Article',
+                            description: 'A must-read article.',
+                            thumbnailUrl: 'https://example.com/article-thumb.jpg',
+                        },
                     },
-                },
+                ],
             });
             expect(result.success).toBe(true);
         });
@@ -353,17 +353,19 @@ describe('Mutation Actions', () => {
                 channelId: 'ch1',
                 schedulingType: 'automatic',
                 mode: 'addToQueue',
-                assets: {
-                    link: {
-                        url: 'https://example.com/article',
-                        title: 'Great Article',
-                        description: 'A must-read article.',
-                        thumbnailUrl: 'https://example.com/article-thumb.jpg',
+                assets: [
+                    {
+                        link: {
+                            url: 'https://example.com/article',
+                            title: 'Great Article',
+                            description: 'A must-read article.',
+                            thumbnailUrl: 'https://example.com/article-thumb.jpg',
+                        },
                     },
-                },
+                ],
             });
-            expect(query).toContain('assets: { link: {');
-            expect(query).toContain('url: "https://example.com/article"');
+            expect(query).toContain('assets: [');
+            expect(query).toContain('link: { url: "https://example.com/article"');
             expect(query).toContain('title: "Great Article"');
             expect(query).toContain('description: "A must-read article."');
             expect(query).toContain('thumbnailUrl: "https://example.com/article-thumb.jpg"');

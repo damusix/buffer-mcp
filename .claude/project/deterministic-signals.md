@@ -1,14 +1,15 @@
 ---
-generated_at: 2026-05-25T14:01:06Z
+generated_at: 2026-05-25T14:45:29Z
 atomic_version: 1.7.0
 ---
 # Deterministic signals
 
 ## Tree
 
-├── .changeset/ (2)
+├── .changeset/ (3)
 │   ├── README.md (4a5dc83, 7L, 472ch, 472B)
-│   └── config.json (633df85, 11L, 328ch, 328B)
+│   ├── config.json (633df85, 11L, 328ch, 328B)
+│   └── migrate-assets-input.md (4086840, 29L, 734ch, 734B)
 ├── .github/ (1)
 │   └── workflows/ (2)
 │       ├── ci.yml (6579880, 27L, 478ch, 478B)
@@ -55,21 +56,21 @@ atomic_version: 1.7.0
 ├── src/ (6)
 │   ├── __tests__/ (4)
 │   │   ├── actions/ (2)
-│   │   │   ├── mutations.test.ts (59f9f12, 1022L, 42383ch, 42383B)
+│   │   │   ├── mutations.test.ts (47239f5, 1024L, 42492ch, 42492B)
 │   │   │   └── queries.test.ts (6023d5e, 405L, 16725ch, 16725B)
 │   │   ├── tools/ (2)
 │   │   │   ├── buffer-api-help.test.ts (8886fa5, 190L, 7555ch, 7555B)
-│   │   │   └── use-buffer-api.test.ts (8debd46, 415L, 14463ch, 14471B)
-│   │   ├── buffer-client.test.ts (4d913d3, 138L, 4898ch, 4898B)
+│   │   │   └── use-buffer-api.test.ts (0830635, 450L, 15469ch, 15477B)
+│   │   ├── buffer-client.test.ts (bf3f2c9, 149L, 5378ch, 5378B)
 │   │   └── registry.test.ts (76bac46, 172L, 5971ch, 5971B)
 │   ├── actions/ (3)
-│   │   ├── mutations.ts (dc6718d, 794L, 33698ch, 33700B)
+│   │   ├── mutations.ts (9cfa385, 769L, 33023ch, 33027B)
 │   │   ├── queries.ts (deab152, 356L, 12701ch, 12701B)
 │   │   └── registry.ts (daab608, 85L, 2270ch, 2270B)
 │   ├── tools/ (2)
 │   │   ├── buffer-api-help.ts (73a8b1b, 67L, 2171ch, 2179B)
-│   │   └── use-buffer-api.ts (e9c72a3, 114L, 4130ch, 4136B)
-│   ├── buffer-client.ts (09f7c91, 58L, 1633ch, 1633B)
+│   │   └── use-buffer-api.ts (f44dbd7, 113L, 3869ch, 3873B)
+│   ├── buffer-client.ts (98e328f, 58L, 1661ch, 1661B)
 │   ├── index.ts (70d914c, 51L, 1762ch, 1764B)
 │   └── types.ts (fb68fc4, 331L, 7420ch, 7424B)
 ├── .gitignore (56b9556, 8L, 138ch, 138B)
@@ -88,8 +89,8 @@ atomic_version: 1.7.0
 
 ## Languages
 
-- Markdown: 10262 LOC (52%), 18 files (38%)
-- TypeScript: 4218 LOC (21%), 15 files (31%)
+- Markdown: 10291 LOC (52%), 19 files (39%)
+- TypeScript: 4240 LOC (21%), 15 files (31%)
 - YAML: 3675 LOC (18%), 4 files (8%)
-- JSON: 1546 LOC (7%), 9 files (19%)
+- JSON: 1546 LOC (7%), 9 files (18%)
 - JavaScript: 2 LOC (0%), 1 file (2%)

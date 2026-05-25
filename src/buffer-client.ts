@@ -1,5 +1,5 @@
 import { FetchEngine } from '@logosdx/fetch';
-import type { FetchError } from '@logosdx/fetch';
+import type { FetchError, EngineConfig } from '@logosdx/fetch';
 
 const BUFFER_ACCESS_TOKEN = process.env.BUFFER_ACCESS_TOKEN || '';
 const BUFFER_RATE_LIMIT = Number(process.env.BUFFER_RATE_LIMIT) || 100;
@@ -28,19 +28,19 @@ const resilience = {
 
     cachePolicy: {
         enabled: true,
-        methods: ['POST'] as const,
+        methods: ['POST'],
         ttl: 3_600_000,
         staleIn: 10_000,
     },
 
-    dedupePolicy: true as const,
+    dedupePolicy: true,
 
     rateLimitPolicy: {
         maxCalls: BUFFER_RATE_LIMIT,
         windowMs: 15 * 60_000,
         waitForToken: true,
     },
-};
+} satisfies Partial<EngineConfig>;
 
 export const bufferApi = new FetchEngine({
     baseUrl: 'https://api.buffer.com',

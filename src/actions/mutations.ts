@@ -18,10 +18,10 @@ const createPostSchema = z.object({
         .optional()
         .describe('ISO 8601 date for customScheduled mode (required when mode is customScheduled)'),
     assets: z
-        .object({
-            images: z
-                .array(
-                    z.object({
+        .array(
+            z.union([
+                z.object({
+                    image: z.object({
                         url: z.string().describe('Image URL'),
                         thumbnailUrl: z.string().optional().describe('Thumbnail URL'),
                         metadata: z
@@ -35,12 +35,9 @@ const createPostSchema = z.object({
                             .optional()
                             .describe('Image metadata'),
                     }),
-                )
-                .optional()
-                .describe('Image attachments'),
-            videos: z
-                .array(
-                    z.object({
+                }),
+                z.object({
+                    video: z.object({
                         url: z.string().describe('Video URL'),
                         thumbnailUrl: z.string().optional().describe('Thumbnail URL'),
                         metadata: z
@@ -54,31 +51,26 @@ const createPostSchema = z.object({
                             .optional()
                             .describe('Video metadata'),
                     }),
-                )
-                .optional()
-                .describe('Video attachments'),
-            documents: z
-                .array(
-                    z.object({
+                }),
+                z.object({
+                    document: z.object({
                         url: z.string().describe('Document URL'),
                         title: z.string().describe('Document title'),
                         thumbnailUrl: z.string().describe('Document thumbnail URL'),
                     }),
-                )
-                .optional()
-                .describe('Document attachments'),
-            link: z
-                .object({
-                    url: z.string().describe('Link URL'),
-                    title: z.string().optional().describe('Link title'),
-                    description: z.string().optional().describe('Link description'),
-                    thumbnailUrl: z.string().optional().describe('Link thumbnail URL'),
-                })
-                .optional()
-                .describe('Link asset'),
-        })
+                }),
+                z.object({
+                    link: z.object({
+                        url: z.string().describe('Link URL'),
+                        title: z.string().optional().describe('Link title'),
+                        description: z.string().optional().describe('Link description'),
+                        thumbnailUrl: z.string().optional().describe('Link thumbnail URL'),
+                    }),
+                }),
+            ]),
+        )
         .optional()
-        .describe('Media attachments'),
+        .describe('Ordered asset list — each item is exactly one of image, video, document, or link'),
     tagIds: z.array(z.string()).optional().describe('Array of tag IDs to apply'),
     metadata: z
         .object({
@@ -249,70 +241,55 @@ function buildCreatePostMutation(payload: Record<string, unknown>): string {
     if (p.draftId) parts.push(`draftId: "${p.draftId}"`);
     if (p.source) parts.push(`source: ${JSON.stringify(p.source)}`);
     if (p.aiAssisted !== undefined) parts.push(`aiAssisted: ${p.aiAssisted}`);
-    if (p.assets) {
-        const assetParts: string[] = [];
-
-        if (p.assets.images?.length) {
-            const imgs = p.assets.images
-                .map((i) => {
-                    const iParts: string[] = [`url: ${JSON.stringify(i.url)}`];
-                    if (i.thumbnailUrl)
-                        iParts.push(`thumbnailUrl: ${JSON.stringify(i.thumbnailUrl)}`);
-                    if (i.metadata) {
-                        const mParts: string[] = [`altText: ${JSON.stringify(i.metadata.altText)}`];
-                        if (i.metadata.animatedThumbnail)
-                            mParts.push(
-                                `animatedThumbnail: ${JSON.stringify(i.metadata.animatedThumbnail)}`,
-                            );
-                        iParts.push(`metadata: { ${mParts.join(', ')} }`);
-                    }
-                    return `{ ${iParts.join(', ')} }`;
-                })
-                .join(', ');
-            assetParts.push(`images: [${imgs}]`);
-        }
-
-        if (p.assets.videos?.length) {
-            const vids = p.assets.videos
-                .map((v) => {
-                    const vParts: string[] = [`url: ${JSON.stringify(v.url)}`];
-                    if (v.thumbnailUrl)
-                        vParts.push(`thumbnailUrl: ${JSON.stringify(v.thumbnailUrl)}`);
-                    if (v.metadata) {
-                        const mParts: string[] = [];
-                        if (v.metadata.thumbnailOffset !== undefined)
-                            mParts.push(`thumbnailOffset: ${v.metadata.thumbnailOffset}`);
-                        if (v.metadata.title)
-                            mParts.push(`title: ${JSON.stringify(v.metadata.title)}`);
-                        if (mParts.length) vParts.push(`metadata: { ${mParts.join(', ')} }`);
-                    }
-                    return `{ ${vParts.join(', ')} }`;
-                })
-                .join(', ');
-            assetParts.push(`videos: [${vids}]`);
-        }
-
-        if (p.assets.documents?.length) {
-            const docs = p.assets.documents
-                .map(
-                    (d) =>
-                        `{ url: ${JSON.stringify(d.url)}, title: ${JSON.stringify(d.title)}, thumbnailUrl: ${JSON.stringify(d.thumbnailUrl)} }`,
-                )
-                .join(', ');
-            assetParts.push(`documents: [${docs}]`);
-        }
-
-        if (p.assets.link) {
-            const lParts: string[] = [`url: ${JSON.stringify(p.assets.link.url)}`];
-            if (p.assets.link.title) lParts.push(`title: ${JSON.stringify(p.assets.link.title)}`);
-            if (p.assets.link.description)
-                lParts.push(`description: ${JSON.stringify(p.assets.link.description)}`);
-            if (p.assets.link.thumbnailUrl)
-                lParts.push(`thumbnailUrl: ${JSON.stringify(p.assets.link.thumbnailUrl)}`);
-            assetParts.push(`link: { ${lParts.join(', ')} }`);
-        }
-
-        if (assetParts.length) parts.push(`assets: { ${assetParts.join(', ')} }`);
+    if (p.assets?.length) {
+        const items = p.assets.map((item) => {
+            if ('image' in item) {
+                const i = item.image;
+                const iParts: string[] = [`url: ${JSON.stringify(i.url)}`];
+                if (i.thumbnailUrl)
+                    iParts.push(`thumbnailUrl: ${JSON.stringify(i.thumbnailUrl)}`);
+                if (i.metadata) {
+                    const mParts: string[] = [`altText: ${JSON.stringify(i.metadata.altText)}`];
+                    if (i.metadata.animatedThumbnail)
+                        mParts.push(
+                            `animatedThumbnail: ${JSON.stringify(i.metadata.animatedThumbnail)}`,
+                        );
+                    iParts.push(`metadata: { ${mParts.join(', ')} }`);
+                }
+                return `{ image: { ${iParts.join(', ')} } }`;
+            }
+            if ('video' in item) {
+                const v = item.video;
+                const vParts: string[] = [`url: ${JSON.stringify(v.url)}`];
+                if (v.thumbnailUrl)
+                    vParts.push(`thumbnailUrl: ${JSON.stringify(v.thumbnailUrl)}`);
+                if (v.metadata) {
+                    const mParts: string[] = [];
+                    if (v.metadata.thumbnailOffset !== undefined)
+                        mParts.push(`thumbnailOffset: ${v.metadata.thumbnailOffset}`);
+                    if (v.metadata.title)
+                        mParts.push(`title: ${JSON.stringify(v.metadata.title)}`);
+                    if (mParts.length) vParts.push(`metadata: { ${mParts.join(', ')} }`);
+                }
+                return `{ video: { ${vParts.join(', ')} } }`;
+            }
+            if ('document' in item) {
+                const d = item.document;
+                return `{ document: { url: ${JSON.stringify(d.url)}, title: ${JSON.stringify(d.title)}, thumbnailUrl: ${JSON.stringify(d.thumbnailUrl)} } }`;
+            }
+            if ('link' in item) {
+                const l = item.link;
+                const lParts: string[] = [`url: ${JSON.stringify(l.url)}`];
+                if (l.title) lParts.push(`title: ${JSON.stringify(l.title)}`);
+                if (l.description)
+                    lParts.push(`description: ${JSON.stringify(l.description)}`);
+                if (l.thumbnailUrl)
+                    lParts.push(`thumbnailUrl: ${JSON.stringify(l.thumbnailUrl)}`);
+                return `{ link: { ${lParts.join(', ')} } }`;
+            }
+            return '';
+        });
+        parts.push(`assets: [${items.join(', ')}]`);
     }
 
     if (p.metadata) {
@@ -549,12 +526,10 @@ export const mutationActions: ActionDefinition[] = [
                     text: 'Check out these photos!',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: {
-                        images: [
-                            { url: 'https://example.com/photo1.jpg' },
-                            { url: 'https://example.com/photo2.jpg' },
-                        ],
-                    },
+                    assets: [
+                        { image: { url: 'https://example.com/photo1.jpg' } },
+                        { image: { url: 'https://example.com/photo2.jpg' } },
+                    ],
                 },
             },
             {
@@ -575,9 +550,7 @@ export const mutationActions: ActionDefinition[] = [
                     schedulingType: 'notification',
                     mode: 'customScheduled',
                     dueAt: '2026-05-01T09:00:00Z',
-                    assets: {
-                        images: [{ url: 'https://example.com/banner.png' }],
-                    },
+                    assets: [{ image: { url: 'https://example.com/banner.png' } }],
                     tagIds: ['6842a1f3e5105cb6432cc222'],
                 },
             },
@@ -588,7 +561,7 @@ export const mutationActions: ActionDefinition[] = [
                     text: 'Watch this!',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: { videos: [{ url: 'https://example.com/reel.mp4' }] },
+                    assets: [{ video: { url: 'https://example.com/reel.mp4' } }],
                     metadata: { instagram: { type: 'reel', shouldShareToFeed: true } },
                 },
             },
@@ -599,14 +572,14 @@ export const mutationActions: ActionDefinition[] = [
                     text: 'Check this out!',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: {
-                        images: [
-                            {
+                    assets: [
+                        {
+                            image: {
                                 url: 'https://example.com/photo.jpg',
                                 metadata: { altText: 'A great photo' },
                             },
-                        ],
-                    },
+                        },
+                    ],
                     metadata: { facebook: { type: 'post' } },
                 },
             },
@@ -616,7 +589,7 @@ export const mutationActions: ActionDefinition[] = [
                     channelId: '690288cc669affb4c9915dda',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: { images: [{ url: 'https://example.com/pin.jpg' }] },
+                    assets: [{ image: { url: 'https://example.com/pin.jpg' } }],
                     metadata: { pinterest: { boardServiceId: 'board123', title: 'Summer vibes' } },
                 },
             },
@@ -626,7 +599,7 @@ export const mutationActions: ActionDefinition[] = [
                     channelId: '690288cc669affb4c9915dda',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: { videos: [{ url: 'https://example.com/video.mp4' }] },
+                    assets: [{ video: { url: 'https://example.com/video.mp4' } }],
                     metadata: {
                         youtube: { title: 'My Video', categoryId: '22', privacy: 'public' },
                     },
@@ -649,15 +622,15 @@ export const mutationActions: ActionDefinition[] = [
                     text: 'Download our guide!',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: {
-                        documents: [
-                            {
+                    assets: [
+                        {
+                            document: {
                                 url: 'https://example.com/guide.pdf',
                                 title: 'Pool Maintenance Guide',
                                 thumbnailUrl: 'https://example.com/guide-cover.jpg',
                             },
-                        ],
-                    },
+                        },
+                    ],
                 },
             },
             {
@@ -667,13 +640,15 @@ export const mutationActions: ActionDefinition[] = [
                     text: 'Great read!',
                     schedulingType: 'automatic',
                     mode: 'addToQueue',
-                    assets: {
-                        link: {
-                            url: 'https://example.com/article',
-                            title: 'Pool Maintenance Tips',
-                            description: 'Everything you need to know.',
+                    assets: [
+                        {
+                            link: {
+                                url: 'https://example.com/article',
+                                title: 'Pool Maintenance Tips',
+                                description: 'Everything you need to know.',
+                            },
                         },
-                    },
+                    ],
                 },
             },
         ],

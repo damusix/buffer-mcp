@@ -11,14 +11,25 @@ const hookRegistry: Array<[string, Function]> = [];
 // Mock @logosdx/fetch
 vi.mock('@logosdx/fetch', () => {
     class MockFetchEngine {
-        config: Record<string, unknown>;
+        config: {
+            get(path?: string): unknown;
+            [key: string]: unknown;
+        };
         hooks = {
             add: vi.fn((event: string, fn: Function) => {
                 hookRegistry.push([event, fn]);
             }),
         };
         constructor(config: Record<string, unknown>) {
-            this.config = config;
+            const store = { ...config };
+            store.get = (path?: string) => {
+                if (!path) return store;
+                return path.split('.').reduce<unknown>((obj, key) => {
+                    if (obj && typeof obj === 'object') return (obj as Record<string, unknown>)[key];
+                    return undefined;
+                }, store);
+            };
+            this.config = store as MockFetchEngine['config'];
         }
     }
     return {
@@ -74,7 +85,7 @@ describe('buffer-client', () => {
 
     it('includes retryable status codes for transient errors', async () => {
         const { bufferApi } = await import('../buffer-client.js');
-        const retry = bufferApi.config.retry as { retryableStatusCodes: number[] };
+        const retry = bufferApi.config.get('retry') as { retryableStatusCodes: number[] };
         expect(retry.retryableStatusCodes).toContain(429);
         expect(retry.retryableStatusCodes).toContain(500);
         expect(retry.retryableStatusCodes).toContain(502);

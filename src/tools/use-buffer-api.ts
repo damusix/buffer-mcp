@@ -4,6 +4,11 @@ import { bufferApi } from '../buffer-client.js';
 import { getAction } from '../actions/registry.js';
 import type { ActionDefinition } from '../actions/registry.js';
 
+interface GraphQLBody {
+    data?: Record<string, unknown>;
+    errors?: Array<{ message: string; extensions?: { code?: string } }>;
+}
+
 export const useBufferApiSchema = z.object({
     action: z.string().describe('Action to execute (e.g. "listPosts", "createPost")'),
     payload: z
@@ -77,24 +82,18 @@ export async function handleUseBufferApi(input: UseBufferApiInput): Promise<stri
     const query = resolveQuery(actionDef, validPayload);
 
     // Step 5: Send request via FetchEngine with attempt()
-    const [response, err] = await attempt(() => bufferApi.post('/', { query }));
+    const [response, err] = await attempt(() => bufferApi.post<GraphQLBody>('/', { query }));
 
     // Step 6: Check attempt() error — network/timeout failures
     if (err) {
         return JSON.stringify({ error: err.message });
     }
 
-    // FetchEngine returns { data, headers, status, ... } — unwrap to get the GraphQL body
-    const raw = response as Record<string, unknown>;
-    const isFetchEngineResponse = 'status' in raw && 'headers' in raw;
-    const body = (isFetchEngineResponse ? raw.data : raw) as Record<string, unknown>;
+    const body = response.data;
 
     // Step 7-8: Check errors array in response body
-    const errors = body.errors as
-        | Array<{ message: string; extensions?: { code?: string } }>
-        | undefined;
-    if (errors?.length) {
-        const firstErr = errors[0];
+    if (body.errors?.length) {
+        const firstErr = body.errors[0];
         const code = firstErr.extensions?.code;
         return JSON.stringify({
             error: `${firstErr.message}${code ? ` (${code})` : ''}`,
@@ -103,7 +102,7 @@ export async function handleUseBufferApi(input: UseBufferApiInput): Promise<stri
 
     // Step 9: Check for typed mutation errors in data
     if (actionDef.category === 'mutation' && body.data) {
-        const mutationErr = isMutationError(actionDef.name, body.data as Record<string, unknown>);
+        const mutationErr = isMutationError(actionDef.name, body.data);
         if (mutationErr) {
             return JSON.stringify({ error: mutationErr });
         }

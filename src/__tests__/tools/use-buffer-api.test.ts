@@ -38,6 +38,10 @@ import { mutationActions } from '../../actions/mutations.js';
 registerActions(queryActions);
 registerActions(mutationActions);
 
+function mockFetchResponse(body: Record<string, unknown>) {
+    return { data: body, status: 200, headers: {}, request: new Request('https://api.buffer.com'), config: {} };
+}
+
 describe('use-buffer-api handler', () => {
     beforeEach(() => {
         vi.clearAllMocks();
@@ -86,9 +90,11 @@ describe('use-buffer-api handler', () => {
     });
 
     it('accepts valid payload and proceeds to API call', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { account: { organizations: [] } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { account: { organizations: [] } },
+            }),
+        );
 
         await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
         expect(bufferApi.post).toHaveBeenCalled();
@@ -107,9 +113,11 @@ describe('use-buffer-api handler', () => {
     // --- Query construction ---
 
     it('sends static GraphQL query for listOrganizations', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { account: { organizations: [] } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { account: { organizations: [] } },
+            }),
+        );
 
         await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
 
@@ -122,9 +130,11 @@ describe('use-buffer-api handler', () => {
     });
 
     it('sends dynamic GraphQL query for listPosts with pagination args', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { posts: { edges: [], pageInfo: {} } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { posts: { edges: [], pageInfo: {} } },
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'listPosts',
@@ -136,20 +146,22 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('first: 5');
         expect(query).toContain('after: "cursor-abc"');
         expect(query).toContain('organizationId: "org123"');
     });
 
     it('sends dynamic GraphQL query for createPost mutation', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: {
-                createPost: {
-                    post: { id: 'post123', status: 'draft' },
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    createPost: {
+                        post: { id: 'post123', status: 'draft' },
+                    },
                 },
-            },
-        } as any);
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'createPost',
@@ -163,7 +175,7 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('mutation');
         expect(query).toContain('createPost');
         expect(query).toContain('channelId: "ch123"');
@@ -175,9 +187,11 @@ describe('use-buffer-api handler', () => {
     });
 
     it('sends query for getChannel with channel ID', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { channel: { id: 'ch123' } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { channel: { id: 'ch123' } },
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'getChannel',
@@ -185,14 +199,16 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('channel(input: { id: "ch123" })');
     });
 
     it('sends query for deletePost mutation', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { deletePost: { __typename: 'DeletePostSuccess' } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { deletePost: { __typename: 'DeletePostSuccess' } },
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'deletePost',
@@ -200,7 +216,7 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('mutation');
         expect(query).toContain('deletePost');
         expect(query).toContain('id: "post-abc"');
@@ -220,15 +236,17 @@ describe('use-buffer-api handler', () => {
     });
 
     it('handles GraphQL errors array in response', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: null,
-            errors: [
-                {
-                    message: 'Not authorized',
-                    extensions: { code: 'UNAUTHORIZED' },
-                },
-            ],
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: null,
+                errors: [
+                    {
+                        message: 'Not authorized',
+                        extensions: { code: 'UNAUTHORIZED' },
+                    },
+                ],
+            }),
+        );
 
         const result = await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
         const parsed = JSON.parse(result);
@@ -237,10 +255,12 @@ describe('use-buffer-api handler', () => {
     });
 
     it('handles GraphQL errors without extensions code', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: null,
-            errors: [{ message: 'Internal server error' }],
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: null,
+                errors: [{ message: 'Internal server error' }],
+            }),
+        );
 
         const result = await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
         const parsed = JSON.parse(result);
@@ -248,14 +268,16 @@ describe('use-buffer-api handler', () => {
     });
 
     it('handles rate limit error shape', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            errors: [
-                {
-                    message: 'Too many requests from this client. Please try again later.',
-                    extensions: { code: 'RATE_LIMIT_EXCEEDED', window: '15m' },
-                },
-            ],
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                errors: [
+                    {
+                        message: 'Too many requests from this client. Please try again later.',
+                        extensions: { code: 'RATE_LIMIT_EXCEEDED', window: '15m' },
+                    },
+                ],
+            }),
+        );
 
         const result = await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
         const parsed = JSON.parse(result);
@@ -265,13 +287,15 @@ describe('use-buffer-api handler', () => {
     // --- Scenario 5: Typed mutation errors ---
 
     it('detects typed mutation error (MutationError) in createPost response', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: {
-                createPost: {
-                    message: 'Invalid post: Instagram posts require at least one image or video.',
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    createPost: {
+                        message: 'Invalid post: Instagram posts require at least one image or video.',
+                    },
                 },
-            },
-        } as any);
+            }),
+        );
 
         const result = await handleUseBufferApi({
             action: 'createPost',
@@ -288,16 +312,17 @@ describe('use-buffer-api handler', () => {
     // --- Successful responses ---
 
     it('returns data for successful query', async () => {
-        const mockResponse = {
-            data: {
-                account: {
-                    organizations: [
-                        { id: 'org1', name: 'Test Org', ownerEmail: 'test@example.com' },
-                    ],
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    account: {
+                        organizations: [
+                            { id: 'org1', name: 'Test Org', ownerEmail: 'test@example.com' },
+                        ],
+                    },
                 },
-            },
-        };
-        vi.mocked(bufferApi.post).mockResolvedValue(mockResponse as any);
+            }),
+        );
 
         const result = await handleUseBufferApi({ action: 'listOrganizations', payload: {} });
         const parsed = JSON.parse(result);
@@ -306,12 +331,13 @@ describe('use-buffer-api handler', () => {
     });
 
     it('returns data for successful mutation', async () => {
-        const mockResponse = {
-            data: {
-                deletePost: { __typename: 'DeletePostSuccess' },
-            },
-        };
-        vi.mocked(bufferApi.post).mockResolvedValue(mockResponse as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    deletePost: { __typename: 'DeletePostSuccess' },
+                },
+            }),
+        );
 
         const result = await handleUseBufferApi({
             action: 'deletePost',
@@ -322,10 +348,11 @@ describe('use-buffer-api handler', () => {
     });
 
     it('returns null data transparently for not-found resources', async () => {
-        const mockResponse = {
-            data: { post: null },
-        };
-        vi.mocked(bufferApi.post).mockResolvedValue(mockResponse as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { post: null },
+            }),
+        );
 
         const result = await handleUseBufferApi({
             action: 'getPost',
@@ -338,9 +365,11 @@ describe('use-buffer-api handler', () => {
     // --- Default payload handling ---
 
     it('defaults payload to empty object when not provided', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { account: { organizations: [] } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { account: { organizations: [] } },
+            }),
+        );
 
         const result = await handleUseBufferApi({ action: 'listOrganizations' });
         const parsed = JSON.parse(result);
@@ -350,9 +379,11 @@ describe('use-buffer-api handler', () => {
     // --- Posts query default first ---
 
     it('uses default first=20 for listPosts when not specified', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: { posts: { edges: [], pageInfo: {} } },
-        } as any);
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: { posts: { edges: [], pageInfo: {} } },
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'listPosts',
@@ -360,20 +391,22 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('first: 20');
     });
 
     // --- createIdea mutation ---
 
     it('sends correct query for createIdea mutation', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: {
-                createIdea: {
-                    idea: { id: 'idea1', content: { title: 'Test', text: 'Idea text' } },
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    createIdea: {
+                        idea: { id: 'idea1', content: { title: 'Test', text: 'Idea text' } },
+                    },
                 },
-            },
-        } as any);
+            }),
+        );
 
         await handleUseBufferApi({
             action: 'createIdea',
@@ -384,7 +417,7 @@ describe('use-buffer-api handler', () => {
         });
 
         const call = vi.mocked(bufferApi.post).mock.calls[0];
-        const query = (call[1] as any).query;
+        const query = (call[1] as { query: string }).query;
         expect(query).toContain('mutation');
         expect(query).toContain('createIdea');
         expect(query).toContain('organizationId: "org123"');
@@ -394,13 +427,15 @@ describe('use-buffer-api handler', () => {
     });
 
     it('detects typed error in createIdea response (LimitReachedError)', async () => {
-        vi.mocked(bufferApi.post).mockResolvedValue({
-            data: {
-                createIdea: {
-                    message: 'You have reached the maximum number of ideas.',
+        vi.mocked(bufferApi.post).mockResolvedValue(
+            mockFetchResponse({
+                data: {
+                    createIdea: {
+                        message: 'You have reached the maximum number of ideas.',
+                    },
                 },
-            },
-        } as any);
+            }),
+        );
 
         const result = await handleUseBufferApi({
             action: 'createIdea',
