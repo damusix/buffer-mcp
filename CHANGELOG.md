@@ -1,5 +1,37 @@
 # @damusix/buffer-mcp
 
+## 1.0.0
+
+### Major Changes
+
+- [`9e48db0`](https://github.com/damusix/buffer-mcp/commit/9e48db03c88dd751184f4ccf5549951f7ea65053) Thanks [@damusix](https://github.com/damusix)! - ## Breaking Changes
+
+  ### `createPost` assets input changed from object to ordered array
+
+  Buffer's GraphQL API replaced `AssetsInput` (object with `images`, `videos`, `documents`, `link` fields) with `[AssetInput!]` (ordered array where each item is exactly one of `image`, `video`, `document`, or `link`).
+
+  **Before:**
+
+  ```ts
+  assets: {
+      images: [{ url: "https://example.com/photo.jpg" }],
+      videos: [{ url: "https://example.com/video.mp4" }]
+  }
+  ```
+
+  **After:**
+
+  ```ts
+  assets: [
+    { image: { url: "https://example.com/photo.jpg" } },
+    { video: { url: "https://example.com/video.mp4" } },
+  ];
+  ```
+
+  ## Fixed
+
+  - `fix(types):` Resolve three TypeScript errors from `@logosdx/fetch` v8 type changes
+
 ## 0.2.1
 
 ### Patch Changes
